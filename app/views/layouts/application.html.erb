@@ -23,7 +23,7 @@
               <% if user_signed_in? %>
                 <%= button_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 <%= link_to "Mi Perfil", "/", class: "nav-link" %>
-                <%= link_to "Mis Links", "/", class: "nav-link" %>
+                <%= link_to "Mis Links", "links#index", class: "nav-link" %>
                 <%= link_to "Crear ShortLink", "/", class: "nav-link" %>
               <% else %>
                 <%= link_to "Iniciar Sesion", new_user_session_path, class: "nav-link" %>
