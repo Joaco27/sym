@@ -1,2 +1,0 @@
-class LogInController < ApplicationController
-end
