@@ -8,6 +8,10 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
 
+  config.action_mailer.default_url_options = { host: 'localhost', port:3000}
+  # config.i18n.default_locale = :es
+
+
   # Do not eager load code on boot.
   config.eager_load = false
 
