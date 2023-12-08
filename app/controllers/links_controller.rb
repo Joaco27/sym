@@ -14,13 +14,14 @@ class LinksController < ApplicationController
   def new
     @link = Link.new
   end
-
   # GET /links/1/edit
   def edit
   end
 
   # POST /links or /links.json
   def create
+    params = link_params
+    put params
     @link = Link.new(link_params)
 
     respond_to do |format|

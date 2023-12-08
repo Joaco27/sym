@@ -1,0 +1,2 @@
+class Regular < Link
+end

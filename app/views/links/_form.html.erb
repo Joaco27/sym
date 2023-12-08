@@ -16,6 +16,11 @@
     <%= form.text_field :original %>
   </div>
 
+  <div class="field">
+    <%= label_tag(:type, "Seleccione el tipo de link") %>
+    <%= form.select :type, options_for_select(Category.all.map { |c| [c.name] }) %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>
