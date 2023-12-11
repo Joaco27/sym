@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Accesses</h1>
+
+<div id="accesses">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Ip_Origen</th>
+      <th scope="col">Fecha</th>
+    </tr>
+    </thead>
+  <tbody>
+    <% @accesses.each do |access| %>
+    <tr>
+        <td><%= access.ip %></td>
+        <td><%= access.created_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+  
+</div>
+
+<%= link_to "Back to Links", links_path %>

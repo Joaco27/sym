@@ -21,7 +21,7 @@ class Link < ApplicationRecord
   def today_access
     cant = 0
     self.accesses.each do |access|
-      if access.created_at.to_date = Date.today
+      if access.created_at.today?
         cant += 1
       end
     end

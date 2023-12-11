@@ -62,7 +62,8 @@ class LinksController < ApplicationController
     puts "https://chq.to/l/#{redirect_params[:slug]}"
     link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
     if link.present?
-      link.access
+      link.accesses.create(:ip => request.remote_ip)
+      redirect_to link.original_link, allow_other_host: true
     else
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :accesses
   resources :links
   devise_for :users
   get 'contact/index'
