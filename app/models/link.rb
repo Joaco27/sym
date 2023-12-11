@@ -2,7 +2,6 @@ class Link < ApplicationRecord
 
   # Validaciones
   validates :original_link, presence: true, format: { with: URI::regexp(%w[http https]), message: 'Debe ser una URL con protocolo http o https' }
-  validates :short_link, presence: true
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_-]+\z/, message: 'Solo puede contener letras, numeros y guiones' }
   validates :category, presence: true
   validates :expiration, presence: true, if: -> { category == 'Temporal' }
@@ -20,15 +19,21 @@ class Link < ApplicationRecord
   end
 
   def today_access
-    0
+    cant = 0
+    self.accesses.each do |access|
+      if access.created_at.to_date = Date.today
+        cant += 1
+      end
+    end
+    cant
   end
 
   def total_access
-    0
+    self.accesses.count
   end
 
   def generate_slug
-    self.slug ||= SecureRandom.hex(4)
+    self.slug ||= SecureRandom.hex(5)
   end
 
   def generate_short_link

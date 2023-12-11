@@ -2,9 +2,15 @@
   <tr>
       <th scope="row"><%= link.id %></th>
       <td><%= link.original_link %></td>
-      <td><%= link.slug %></td>
-      <td><%= link.today_access %></td>
-      <td><%= link.total_access %></td>
+      <td><%= link.short_link %></td>
+      <% if link.accesses.any? %>
+        <td><%= link.today_access %></td>
+        <td><%= link.total_access %></td>
+      <% else %>
+        <td><%= 0 %></td>
+        <td><%= 0 %></td>
+      <% end %>
+
       <td><%= link_to 'Editar', edit_link_path(link) %></td>
     </tr>
 </div>

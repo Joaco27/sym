@@ -12,9 +12,11 @@
 
 ActiveRecord::Schema[7.1].define(version: 2023_12_07_142735) do
   create_table "accesses", force: :cascade do |t|
+    t.integer "link_id", null: false
     t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_accesses_on_link_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -50,5 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_142735) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "accesses", "links"
   add_foreign_key "links", "users"
 end

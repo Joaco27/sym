@@ -12,7 +12,7 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    @link = Link.new
+    @link = current_user.links.build
   end
   # GET /links/1/edit
   def edit
@@ -22,11 +22,11 @@ class LinksController < ApplicationController
   def create
     # puts "Paramteros recibidos: #{link_params}"
 
-    @link = Link.new(link_params)
+    @link = current_user.links.build(link_params)
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to link_url(@link), notice: "Link was successfully created." }
+        format.html { redirect_to links_url, notice: "Link was successfully created." }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -58,6 +58,16 @@ class LinksController < ApplicationController
     end
   end
 
+  def redirect
+    puts "https://chq.to/l/#{redirect_params[:slug]}"
+    link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
+    if link.present?
+      link.access
+    else
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
@@ -66,7 +76,11 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:original, :slug, :password, :expiration)
+      params.require(:link).permit(:original_link, :category, :password, :expiration)
+    end
+
+    def redirect_params
+      params.permit(:slug)
     end
 
 end
