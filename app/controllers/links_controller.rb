@@ -3,7 +3,7 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
-    @links = Link.all
+    @links = current_user.links
   end
 
   # GET /links/1 or /links/1.json
@@ -20,29 +20,9 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    puts "Paramteros recibidos: #{link_params}"
-    params = link_params
-    type = params["category"]
-    password = params.delete("password")
-    expiration = params.delete("expiration")
-    params[:slug] = "URL acortada"
+    # puts "Paramteros recibidos: #{link_params}"
 
-    puts "Parametros Acortados: #{params}"
-    puts "Columnas Requeridas #{Regular.column_names}"
-
-    if type == "Privado"
-      params[:password] = password
-      @link = Private.new(params)
-    elsif type == "Efimero"
-      params[:expiration] = expiration
-      @link = Ephemeral.new(params)
-    elsif type == "Temporal"
-      @link = Temporary.new(params)
-    else
-      @link = Regular.new(params)
-    end
-
-    # @link = Link.new(link_params)
+    @link = Link.new(link_params)
 
     respond_to do |format|
       if @link.save

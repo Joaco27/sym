@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_180453) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_142735) do
   create_table "accesses", force: :cascade do |t|
     t.string "ip"
     t.datetime "created_at", null: false
@@ -23,35 +23,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_180453) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ephemerals", force: :cascade do |t|
-    t.boolean "enabled", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "links", force: :cascade do |t|
-    t.string "slug"
-    t.string "original"
+    t.integer "user_id", null: false
+    t.string "short_link"
+    t.string "original_link"
     t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "privates", force: :cascade do |t|
+    t.string "slug"
     t.string "password"
+    t.string "expiration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "regulars", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "temporaries", force: :cascade do |t|
-    t.datetime "expiration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +50,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_180453) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "links", "users"
 end
