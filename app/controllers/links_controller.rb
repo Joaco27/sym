@@ -59,10 +59,21 @@ class LinksController < ApplicationController
   end
 
   def redirect
-    puts "https://chq.to/l/#{redirect_params[:slug]}"
+    # puts "https://chq.to/l/#{redirect_params[:slug]}"
     link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
     if link.present?
       link.accesses.create(:ip => request.remote_ip)
+
+      # Esto es necesario debido a que toma dos accesos al mismo tiempo
+      last_two = Access.last 2
+      if last_two.length == 2
+        acceso1 = last_two[0]
+        acceso2 = last_two[1]
+        diferencia = (acceso1.created_at - acceso2.created_at).abs
+        if diferencia <= 2.seconds
+          Access.last.destroy
+        end
+      end
       redirect_to link.original_link, allow_other_host: true
     else
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
