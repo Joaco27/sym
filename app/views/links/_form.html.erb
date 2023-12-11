@@ -17,8 +17,8 @@
   </div>
 
   <div class="field">
-    <%= label_tag(:type, "Seleccione el tipo de link") %>
-    <%= form.select :type, options_for_select(Category.all.map { |c| [c.name] }), {}, { id: 'opciones' } %>
+    <%= label_tag(:category, "Seleccione el tipo de link") %>
+    <%= form.select :category, options_for_select(Category.all.map { |c| [c.name] }), {}, { id: 'opciones' } %>
   </div>
 
   <script type="text/javascript">

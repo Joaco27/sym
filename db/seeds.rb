@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Category.create(:name => "Regular")
+Category.create(:name => "Temporal")
+Category.create(:name => "Privado")
+Category.create(:name => "Efimero")

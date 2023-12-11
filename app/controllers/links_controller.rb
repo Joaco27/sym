@@ -22,7 +22,7 @@ class LinksController < ApplicationController
   def create
     puts "Paramteros recibidos: #{link_params}"
     params = link_params
-    type = params.delete("type")
+    type = params["category"]
     password = params.delete("password")
     expiration = params.delete("expiration")
     params[:slug] = "URL acortada"
