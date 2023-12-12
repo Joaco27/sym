@@ -40,7 +40,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to link_url(@link), notice: "Link was successfully updated." }
+        format.html { redirect_to links_url, notice: "Link was successfully updated." }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,15 +67,13 @@ class LinksController < ApplicationController
     if @link.present?
       if @link.is_accesable?
         if @link.category == "Privado"
-          redirect_to "/links/input_password"
+          return redirect_to "/input_password/#{@link.id}"
         end
         @link.accesses.create(:ip => request.remote_ip)
-        redirect_to @link.original_link, allow_other_host: true
+        return redirect_to @link.original_link, allow_other_host: true
       end
-
-    else
-      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     end
+    return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
   end
 
   def input_password
@@ -86,9 +84,9 @@ class LinksController < ApplicationController
 
     if @link.password == params[:password]
       @link.accesses.create(:ip => request.remote_ip)
-      redirect_to @link.original_link, allow_other_host: true
+      return redirect_to @link.original_link, allow_other_host: true
     else
-      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+      return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     end
   end
 

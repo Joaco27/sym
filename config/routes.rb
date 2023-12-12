@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'contact/index'
   get 'about_us/index'
   get "/l/:slug", to: "links#redirect", as: "redirect_link"
-  post 'links/:id/verify_password', to: 'links#verify_password', as: 'verify_password_link'
+  get "/input_password/:id", to: "links#input_password", as: "input_password"
+  post 'links/verify_password/:id', to: 'links#verify_password', as: 'verify_password_link'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

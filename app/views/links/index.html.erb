@@ -3,7 +3,7 @@
 <h1>Links</h1>
 
 <div id="links">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -14,11 +14,11 @@
       <th scope="col">Total Accesos</th>
     </tr>
     </thead>
-  <% @links.each do |link| %>
   <tbody>
-    <%= render link %>
-    </tbody>
-  <% end %>
+      <% @links.each do |link| %>
+        <%= render link %>
+      <% end %>
+  </tbody>
   </table>
 </div>
 

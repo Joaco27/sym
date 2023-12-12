@@ -7,11 +7,12 @@
       <% if link.accesses.any? %>
         <td><%= link.today_access %></td>
         <td><%= link.total_access %></td>
-        <td><%= link_to 'Ver accesos', accesses_path(link.id) %></td>
+        <td class="btn btn-primary"><%= link_to 'Ver accesos', accesses_path(link.id) %></td>
       <% else %>
         <td><%= 0 %></td>
         <td><%= 0 %></td>
       <% end %>
-      <td><%= link_to 'Editar', edit_link_path(link) %></td>
+      <td class="btn btn-success"><%= link_to 'Editar', edit_link_path(link) %></td>
+      <td class="btn btn-danger"><%= button_to 'Borrar', link, method: :delete %></td>
     </tr>
 </div>

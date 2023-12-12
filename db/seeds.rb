@@ -16,4 +16,8 @@ eph = Category.create!(:name => "Efimero")
 
 u = User.create!(username: 'Joaco27', email: 'joaco200127@gmail.com', password: 'hola123')
 
-l = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')
+l_reg = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')
+l_priv = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/storage', category: 'Privado', password:"hola")
+l_eph = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/app', category: 'Efimero')
+l_temp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/config', category: 'Temporal', expiration: Time.now + 2.day)
+l_temp_exp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/public', category: 'Temporal', expiration: Time.now - 2.day)
