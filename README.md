@@ -22,3 +22,28 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Descarga
+Clonar el repositorio
+$ git clone https://github.com/Joaco27/sym.git
+
+# Nos posicionamos dentro del proyecto
+$ cd sym
+
+# En caso de no tener instalado bundler
+$ gem install bundler
+
+# Instalar dependencias
+$ bundle install
+
+# Correr migraciones para la BD
+$ rails db:migrate
+
+# Cargar datos de prueba
+$ rails db:seed
+
+# Levantar la app
+$ rails server
+
+# Autor
+Joaquin Tartaruga
