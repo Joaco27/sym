@@ -8,7 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Category.create(:name => "Regular")
-Category.create(:name => "Temporal")
-Category.create(:name => "Privado")
-Category.create(:name => "Efimero")
+
+reg = Category.create!(:name => "Regular")
+temp = Category.create!(:name => "Temporal")
+priv = Category.create!(:name => "Privado")
+eph = Category.create!(:name => "Efimero")
+
+u = User.create!(username: 'Joaco27', email: 'joaco200127@gmail.com', password: 'hola123')
+
+l = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')

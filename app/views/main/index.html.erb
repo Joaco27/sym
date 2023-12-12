@@ -1,4 +1,8 @@
-<h1>Bienvenido a Chq.to</h1>
+<% if user_signed_in? %>
+    <h1>Bienvenido <%= current_user.username %></h1>
+<% else %>
+    <h1>Bienvenido a Chq.to</h1>
+<% end %>
 <p>En esta pagina podras recortar un link para que te sea mas facil recordarlo</p>
 
 
