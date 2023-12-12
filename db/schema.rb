@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_142735) do
     t.string "category"
     t.string "slug"
     t.string "password"
-    t.string "expiration"
+    t.datetime "expiration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_links_on_user_id"

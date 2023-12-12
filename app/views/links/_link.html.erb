@@ -3,6 +3,7 @@
       <th scope="row"><%= link.id %></th>
       <td><%= link.original_link %></td>
       <td><%= link.short_link %></td>
+      <td><%= link.category %></td>
       <% if link.accesses.any? %>
         <td><%= link.today_access %></td>
         <td><%= link.total_access %></td>

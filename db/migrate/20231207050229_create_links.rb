@@ -7,7 +7,7 @@ class CreateLinks < ActiveRecord::Migration[7.1]
       t.string :category
       t.string :slug
       t.string :password
-      t.string :expiration
+      t.datetime :expiration
 
       t.timestamps
     end

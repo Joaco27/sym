@@ -62,12 +62,31 @@ class LinksController < ApplicationController
   def redirect
     # Al estar es desarrollo pongo el link acortado con url local
     # link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
-    link = Link.where(:short_link => "http://127.0.0.1:3000/l/#{redirect_params[:slug]}").first
+    @link = Link.where(:short_link => "http://127.0.0.1:3000/l/#{redirect_params[:slug]}").first
 
-    if link.present?
-      
-      link.accesses.create(:ip => request.remote_ip)
-      redirect_to link.original_link, allow_other_host: true
+    if @link.present?
+      if @link.is_accesable?
+        if @link.category == "Privado"
+          redirect_to "/links/input_password"
+        end
+        @link.accesses.create(:ip => request.remote_ip)
+        redirect_to @link.original_link, allow_other_host: true
+      end
+
+    else
+      render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+    end
+  end
+
+  def input_password
+  end
+
+  def verify_password
+    @link = Link.find(params[:id])
+
+    if @link.password == params[:password]
+      @link.accesses.create(:ip => request.remote_ip)
+      redirect_to @link.original_link, allow_other_host: true
     else
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
     end

@@ -15,7 +15,14 @@ class Link < ApplicationRecord
   before_validation :generate_slug
   before_save :generate_short_link
 
-  def access
+  def is_accesable?
+    if self.category == "Efimero" && self.accesses.any?
+      return false
+    end
+    if self.category == "Temporal" && self.expiration < DateTime.now
+      return false
+    end
+    return true
   end
 
   def today_access

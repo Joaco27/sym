@@ -15,13 +15,8 @@
     <%= form.label :original_link %>
     <%= form.text_field :original_link %>
   </div>
-
-  <div class="field">
-    <%= label_tag(:category, "Seleccione el tipo de link") %>
-    <%= form.select :category, options_for_select(Category.all.map { |c| [c.name] }), {}, { id: 'opciones' } %>
-  </div>
-
-  <script type="text/javascript">
+  
+ <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
       let select = document.getElementById('opciones'); 
 
@@ -43,6 +38,12 @@
       });
     });
   </script>
+
+  <div class="field">
+    <%= label_tag(:category, "Seleccione el tipo de link") %>
+    <%= form.select :category, options_for_select(Category.all.map { |c| [c.name] }), {}, { id: 'opciones' } %>
+  </div>
+
 
   <div class="field" id="privado" style="display:none;">
     <%= form.label :password %>
