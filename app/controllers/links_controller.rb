@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /links or /links.json
   def index
@@ -59,21 +60,13 @@ class LinksController < ApplicationController
   end
 
   def redirect
-    # puts "https://chq.to/l/#{redirect_params[:slug]}"
-    link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
-    if link.present?
-      link.accesses.create(:ip => request.remote_ip)
+    # Al estar es desarrollo pongo el link acortado con url local
+    # link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
+    link = Link.where(:short_link => "http://127.0.0.1:3000/l/#{redirect_params[:slug]}").first
 
-      # Esto es necesario debido a que toma dos accesos al mismo tiempo
-      last_two = Access.last 2
-      if last_two.length == 2
-        acceso1 = last_two[0]
-        acceso2 = last_two[1]
-        diferencia = (acceso1.created_at - acceso2.created_at).abs
-        if diferencia <= 2.seconds
-          Access.last.destroy
-        end
-      end
+    if link.present?
+      
+      link.accesses.create(:ip => request.remote_ip)
       redirect_to link.original_link, allow_other_host: true
     else
       render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false

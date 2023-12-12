@@ -37,6 +37,8 @@ class Link < ApplicationRecord
   end
 
   def generate_short_link
-      self.short_link = "https://chq.to/l/#{slug}"
+      # Al estar es desarrollo pongo el link acortado con url local
+      # self.short_link = "https://chq.to/l/#{slug}"
+      self.short_link = "http://127.0.0.1:3000/l/#{slug}"
   end
 end

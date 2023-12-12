@@ -1,7 +1,7 @@
 class AccessesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    # puts "Los parametros son: #{params[:format]}"
     @accesses = Link.find(params[:format]).accesses
   end
 
