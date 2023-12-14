@@ -1,5 +1,16 @@
 # README
 
+# Decisiones de Diseño
+
+- Si bien se podia construir una jerarquía para los Links, se decidió por no hacerlo debido a problemas para referenciar al modelo Link en formularios y errores
+
+- Para el modelo User se utilizó la gema devise, que construye dicho modelo con email y password. Además se le agregó campo username
+
+- El modelo link posee los métodos: total_access (devuelve el total de accesos), today_access (devuelve los accesos diarios) e is_accessable? (devuelve si un link puede ser accedido)
+
+- En el modelo Access, para saber la fecha del acceso se utiliza el campo created_at
+
+
 # Requisitos
 - Ruby >=2.7
 - Rails =7.2
