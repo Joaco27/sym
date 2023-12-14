@@ -1,27 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Requisitos
+- Ruby >=2.7
+- Rails =7.2
+- Base de Datos: SQLite
 
 # Descarga
 Clonar el repositorio
@@ -36,6 +18,9 @@ $ gem install bundler
 ### Instalar dependencias
 $ bundle install
 
+### Creacion de la BD
+$ rails db:create
+
 ### Correr migraciones para la BD
 $ rails db:migrate
 
@@ -44,6 +29,9 @@ $ rails db:seed
 
 ### Levantar la app
 $ rails server
+
+### Ver pagina web
+Dirigirse a la Url http://127.0.0.1:3000/
 
 # Autor
 Joaquin Tartaruga
