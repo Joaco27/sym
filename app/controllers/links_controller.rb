@@ -61,6 +61,7 @@ class LinksController < ApplicationController
 
   def redirect
     # Al estar es desarrollo pongo el link acortado con url local
+    # Podria buscar directamente por slug en vez de por el ShortLink
     # link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
     @link = Link.where(:short_link => "http://127.0.0.1:3000/l/#{redirect_params[:slug]}").first
 

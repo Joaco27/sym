@@ -15,6 +15,8 @@
     <%= form.label :original_link %>
     <%= form.text_field :original_link %>
   </div>
+
+  <br>
   
  <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
@@ -43,19 +45,22 @@
     <%= label_tag(:category, "Seleccione el tipo de link") %>
     <%= form.select :category, options_for_select(Category.all.map { |c| [c.name] }), {}, { id: 'opciones' } %>
   </div>
+  <br>
 
 
   <div class="field" id="privado" style="display:none;">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
+  <br>
 
   <div class="field" id="temporal" style="display:none;">
     <%= form.label :expiration %>
     <%= form.datetime_local_field  :expiration %>
   </div>
+  <br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
