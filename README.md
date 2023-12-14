@@ -5,8 +5,8 @@
 - Rails =7.2
 - Base de Datos: SQLite
 
-# Descarga
-Clonar el repositorio
+# Descarga y Uso
+### Clonar el repositorio
 $ git clone https://github.com/Joaco27/sym.git
 
 ### Nos posicionamos dentro del proyecto
