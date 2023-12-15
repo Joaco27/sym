@@ -35,7 +35,16 @@ class Link < ApplicationRecord
   end
 
   def generate_slug
-    self.slug ||= SecureRandom.hex(5)
+    # Perdon por hacer trampa, uso un while
+
+    return if slug.present? # Si ya tiene un valor, no genero uno nuevo
+
+    potential_slug = SecureRandom.hex(5)
+    while Link.exists?(slug: potential_slug)
+      potential_slug = SecureRandom.hex(5)
+    end
+
+    self.slug = potential_slug
   end
 
   def generate_short_link
