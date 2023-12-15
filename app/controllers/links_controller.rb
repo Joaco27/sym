@@ -60,10 +60,8 @@ class LinksController < ApplicationController
   end
 
   def redirect
-    # Al estar es desarrollo pongo el link acortado con url local
-    # Podria buscar directamente por slug en vez de por el ShortLink
-    # link = Link.where(:short_link => "https://chq.to/l/#{redirect_params[:slug]}").first
-    @link = Link.where(:short_link => "http://127.0.0.1:3000/l/#{redirect_params[:slug]}").first
+    puts redirect_params
+    @link = Link.where(:slug => redirect_params[:slug]).first
 
     if @link.present?
       if @link.is_accesable?
@@ -87,7 +85,7 @@ class LinksController < ApplicationController
       @link.accesses.create(:ip => request.remote_ip)
       return redirect_to @link.original_link, allow_other_host: true
     else
-      return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+      return redirect_to "/input_password/#{@link.id}"
     end
   end
 

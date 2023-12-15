@@ -13,7 +13,6 @@ class Link < ApplicationRecord
 
   # Acciones previas para generar ShortLinks y Slugs
   before_validation :generate_slug
-  before_save :generate_short_link
 
   def is_accesable?
     if self.category == "Efimero" && self.accesses.any?
@@ -47,9 +46,4 @@ class Link < ApplicationRecord
     self.slug = potential_slug
   end
 
-  def generate_short_link
-      # Al estar es desarrollo pongo el link acortado con url local
-      # self.short_link = "https://chq.to/l/#{slug}"
-      self.short_link = "http://127.0.0.1:3000/l/#{slug}"
-  end
 end
