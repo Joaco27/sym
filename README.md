@@ -1,30 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Decisiones de Diseño
 
-Things you may want to cover:
+- Si bien se podia construir una jerarquía para los Links, se decidió por no hacerlo debido a problemas para referenciar al modelo Link en formularios y errores
 
-* Ruby version
+- Para el modelo User se utilizó la gema devise, que construye dicho modelo con email y password. Además se le agregó campo username
 
-* System dependencies
+- El modelo link posee los métodos: total_access (devuelve el total de accesos), today_access (devuelve los accesos diarios) e is_accessable? (devuelve si un link puede ser accedido)
 
-* Configuration
+- En el modelo Access, para saber la fecha del acceso se utiliza el campo created_at
 
-* Database creation
 
-* Database initialization
+# Requisitos
+- Ruby >=2.7
+- Rails =7.2
+- Base de Datos: SQLite
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-# Descarga
-Clonar el repositorio
+# Descarga y Uso
+### Clonar el repositorio
 $ git clone https://github.com/Joaco27/sym.git
 
 ### Nos posicionamos dentro del proyecto
@@ -36,6 +29,9 @@ $ gem install bundler
 ### Instalar dependencias
 $ bundle install
 
+### Creacion de la BD
+$ rails db:create
+
 ### Correr migraciones para la BD
 $ rails db:migrate
 
@@ -44,6 +40,9 @@ $ rails db:seed
 
 ### Levantar la app
 $ rails server
+
+### Ver pagina web
+Dirigirse a la Url http://127.0.0.1:3000/
 
 # Autor
 Joaquin Tartaruga
