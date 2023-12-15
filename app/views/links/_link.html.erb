@@ -2,7 +2,7 @@
   <tr>
       <th scope="row"><%= link.id %></th>
       <td><%= link.original_link %></td>
-      <td><%= link_url(link) %></td>
+      <td><%= link_to "#{link_url(link)}", "/l/#{link.slug}" %></td>
       <td><%= link.category %></td>
       <% if link.accesses.any? %>
         <td><%= link.today_access %></td>
