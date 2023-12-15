@@ -26,14 +26,9 @@ class Link < ApplicationRecord
   end
 
   def today_access
-    cant = 0
-    self.accesses.each do |access|
-      if access.created_at.today?
-        cant += 1
-      end
-    end
-    cant
+    self.accesses.where('DATE(created_at) = ?', Date.today).count
   end
+
 
   def total_access
     self.accesses.count
