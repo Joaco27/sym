@@ -2,6 +2,44 @@
 
 <h1>Accesses</h1>
 
+<%= form_with(url: filtered_access_path(@link_id), method: :post) do |form| %>
+  <div class="mb-3">
+    <%= form.select :filter_type, options_for_select(['Por Ip', 'Por fechas'], selected: 'Por Ip'), {}, class: 'form-select' %>
+  </div>
+
+  <div class="mb-3 input-ip" style="display: block;">
+    <%= form.text_field :ip, class: 'form-control', placeholder: 'Ingresa una IP' %>
+  </div>
+
+  <div class="mb-3 input-dates" style="display: none;">
+    <%= form.date_field :fecha_inicio, class: 'form-control', placeholder: 'Fecha de inicio' %>
+    <%= form.date_field :fecha_fin, class: 'form-control', placeholder: 'Fecha de fin' %>
+  </div>
+
+  <%= form.submit 'Buscar', class: 'btn btn-primary' %>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterTypeSelect = document.querySelector('select[name="filter_type"]');
+    const inputIp = document.querySelector('.input-ip');
+    const inputDates = document.querySelector('.input-dates');
+
+    filterTypeSelect.addEventListener('change', (event) => {
+      const selectedOption = event.target.value;
+
+      if (selectedOption === 'Por Ip') {
+        inputIp.style.display = 'block';
+        inputDates.style.display = 'none';
+      } else if (selectedOption === 'Por fechas') {
+        inputIp.style.display = 'none';
+        inputDates.style.display = 'block';
+      }
+    });
+  });
+</script>
+
+
 <div id="accesses">
   <table class="table table-striped">
     <thead>
