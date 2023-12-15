@@ -21,3 +21,15 @@ l_priv = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym
 l_eph = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/app', category: 'Efimero')
 l_temp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/config', category: 'Temporal', expiration: Time.now + 2.day)
 l_temp_exp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/public', category: 'Temporal', expiration: Time.now - 2.day)
+
+random_access1 = Access.create!(link_id: 1, ip: "80.58.0.33")
+random_access1.created_at = DateTime.now - 1.week
+random_access1.save!
+
+random_access2 = Access.create!(link_id: 1, ip: "255.255.255.0")
+random_access2.created_at = DateTime.now - 1.day
+random_access2.save!
+
+random_access3 = Access.create!(link_id: 1, ip: "192.168.1.13")
+random_access3.created_at = DateTime.now
+random_access3.save!
