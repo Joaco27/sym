@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :check_owner, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
   # GET /links or /links.json
@@ -91,6 +92,13 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
+    end
+
+    def check_owner
+      @link = Link.find(params[:id])
+      if @link.user_id != current_user.id
+        return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+      end
     end
 
     # Only allow a list of trusted parameters through.
