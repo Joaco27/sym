@@ -21,7 +21,6 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    # puts "Paramteros recibidos: #{link_params}"
 
     @link = current_user.links.build(link_params)
 
@@ -60,7 +59,6 @@ class LinksController < ApplicationController
   end
 
   def redirect
-    puts redirect_params
     @link = Link.where(:slug => redirect_params[:slug]).first
 
     if @link.present?
