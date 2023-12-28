@@ -1,11 +1,11 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
   before_action :check_owner, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[ show edit update destroy new create ]
 
   # GET /links or /links.json
   def index
-    @links = current_user.links
+    @links = Link.all
   end
 
   # GET /links/1 or /links/1.json
