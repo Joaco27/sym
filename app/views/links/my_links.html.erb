@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Links</h1>
+
+<div id="links">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Original</th>
+      <th scope="col">ShortLink</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Accesos Diarios</th>
+      <th scope="col">Total Accesos</th>
+    </tr>
+    </thead>
+  <tbody>
+      <% @links.each do |link| %>
+        <%= render link %>
+      <% end %>
+  </tbody>
+  </table>
+</div>
+
+
+

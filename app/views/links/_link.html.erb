@@ -12,7 +12,9 @@
         <td><%= 0 %></td>
         <td><%= 0 %></td>
       <% end %>
-      <td class="btn btn-success"><%= link_to 'Editar', edit_link_path(link) %></td>
-      <td class="btn btn-danger"><%= button_to 'Borrar', link, method: :delete %></td>
+      <% if user_signed_in? and link.user_id == current_user.id %>
+        <td class="btn btn-success"><%= link_to 'Editar', edit_link_path(link) %></td>
+        <td class="btn btn-danger"><%= button_to 'Borrar', link, method: :delete %></td>
+      <% end %>
     </tr>
 </div>

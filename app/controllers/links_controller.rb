@@ -8,6 +8,10 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
+  def my_links
+    @links = current_user.links
+  end
+
   # GET /links/1 or /links/1.json
   def show
   end

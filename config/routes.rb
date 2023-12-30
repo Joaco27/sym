@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'contact/index'
   get 'about_us/index'
   get "/l/:slug", to: "links#redirect", as: "redirect_link"
+  get "/my_links", to: "links#my_links", as: "my_links"
   get "/input_password/:id", to: "links#input_password", as: "input_password"
   post 'links/verify_password/:id', to: 'links#verify_password', as: 'verify_password_link'
   post 'accesses/filtered_accesses', to: 'accesses#filtered_accesses', as: 'filtered_access'
