@@ -15,6 +15,8 @@ priv = Category.create!(:name => "Privado")
 eph = Category.create!(:name => "Efimero")
 
 u = User.create!(username: 'Joaco27', email: 'joaco@mail.com', password: 'hola123')
+u2 = User.create!(username: 'Example', email: 'example@mail.com', password: 'hola123')
+
 
 l_reg = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')
 l_priv = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/storage', category: 'Privado', password:"12345")
@@ -37,8 +39,27 @@ end
 
 2.times do
   random_access = Access.create!(link_id: 1, ip: "192.168.1.13")
-  random_access.created_at = DateTime.now
   random_access.save!
 end
 
 random_access = Access.create!(link_id: 4, ip: "192.168.1.13")
+
+yt = Link.create!(user_id: 2, original_link: 'https://www.youtube.com/', category: 'Regular')
+wtsp = Link.create!(user_id: 2, original_link: 'https://web.whatsapp.com/' category: 'Regular')
+spot = Link.create!(user_id: 2, original_link: 'https://open.spotify.com/intl-es', category: 'Regular')
+
+7.times do
+  random_access = Access.create!(link_id: 7, ip: "255.255.255.0")
+  random_access.created_at = DateTime.now - 1.day
+  random_access.save!
+end
+
+4.times do
+  random_access = Access.create!(link_id: 8, ip: "255.255.255.0")
+  random_access.created_at = DateTime.now - 1.day
+  random_access.save!
+end
+
+random_access = Access.create!(link_id: 9, ip: "255.255.255.0")
+random_access.created_at = DateTime.now - 1.day
+random_access.save!
