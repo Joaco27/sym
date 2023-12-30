@@ -1,4 +1,6 @@
 class AccessesController < ApplicationController
+  before_action :authenticate_user!, only: %i[ index filtered_accesses search_by_dates ]
+  before_action :check_owner, only: %i[ index filtered_accesses search_by_dates ]
 
   def index
     @accesses = Link.find(params[:format]).accesses
@@ -30,5 +32,12 @@ class AccessesController < ApplicationController
     @filtered_accesses
   end
 
+  private
+    def check_owner
+      @link = Link.find(params[:format])
+      if @link.user_id != current_user.id
+        return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
+      end
+    end
 
 end

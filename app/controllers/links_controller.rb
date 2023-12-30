@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
-  before_action :check_owner, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ show edit update destroy new create ]
+  before_action :check_owner, only: %i[ show edit update destroy ]
 
   # GET /links or /links.json
   def index
