@@ -9,21 +9,21 @@
 #   end
 
 
-reg = Category.create!(:name => "Regular")
-temp = Category.create!(:name => "Temporal")
-priv = Category.create!(:name => "Privado")
-eph = Category.create!(:name => "Efimero")
+Category.create!(:name => "Regular")
+Category.create!(:name => "Temporal")
+Category.create!(:name => "Privado")
+Category.create!(:name => "Efimero")
 
-u = User.create!(username: 'Joaco27', email: 'joaco@mail.com', password: 'hola123')
-u2 = User.create!(username: 'Example', email: 'example@mail.com', password: 'hola123')
+User.create!(username: 'Joaco27', email: 'joaco@mail.com', password: 'hola123')
+User.create!(username: 'Example', email: 'example@mail.com', password: 'hola123')
 
 
-l_reg = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')
-l_priv = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/storage', category: 'Privado', password:"12345")
-l_eph = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/app', category: 'Efimero')
-l_eph_exp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/test', category: 'Efimero')
-l_temp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/config', category: 'Temporal', expiration: Time.now + 2.day)
-l_temp_exp = Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/public', category: 'Temporal', expiration: Time.now - 2.day)
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym', category: 'Regular')
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/storage', category: 'Privado', password:"12345")
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/app', category: 'Efimero')
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/test', category: 'Efimero')
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/config', category: 'Temporal', expiration: Time.now + 2.day)
+Link.create!(user_id: 1, original_link: 'https://github.com/Joaco27/sym/tree/master/public', category: 'Temporal', expiration: Time.now - 2.day)
 
 5.times do
   random_access = Access.create!(link_id: 1, ip: "80.58.0.33")
@@ -44,9 +44,9 @@ end
 
 random_access = Access.create!(link_id: 4, ip: "192.168.1.13")
 
-yt = Link.create!(user_id: 2, original_link: 'https://www.youtube.com/', category: 'Regular')
-wtsp = Link.create!(user_id: 2, original_link: 'https://web.whatsapp.com/' category: 'Regular')
-spot = Link.create!(user_id: 2, original_link: 'https://open.spotify.com/intl-es', category: 'Regular')
+Link.create!(user_id: 2, original_link: 'https://www.youtube.com/', category: 'Regular')
+Link.create!(user_id: 2, original_link: 'https://web.whatsapp.com/', category: 'Regular')
+Link.create!(user_id: 2, original_link: 'https://open.spotify.com/intl-es', category: 'Regular')
 
 7.times do
   random_access = Access.create!(link_id: 7, ip: "255.255.255.0")
