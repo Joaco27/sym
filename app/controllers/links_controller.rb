@@ -78,6 +78,10 @@ class LinksController < ApplicationController
     return render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
   end
 
+  def filtered_links
+    @filtered_links = Link.where("original_link LIKE ?", "%#{params[:ip]}%")
+  end
+
   def input_password
   end
 

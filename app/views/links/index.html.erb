@@ -2,6 +2,15 @@
 
 <h1>Links</h1>
 
+<%= form_with(url: filtered_link_path, method: :post) do |form| %>
+
+  <div class="mb-3 input-ip" style="display: block;">
+    <%= form.text_field :ip, class: 'form-control', placeholder: 'Ingresa un Link' %>
+  </div>
+
+  <%= form.submit 'Buscar', class: 'btn btn-primary' %>
+<% end %>
+
 <div id="links">
   <table class="table table-striped">
     <thead>

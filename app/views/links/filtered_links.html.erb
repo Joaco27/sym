@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Links</h1>
+
+<div id="links">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Original</th>
+      <th scope="col">ShortLink</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Accesos Diarios</th>
+      <th scope="col">Total Accesos</th>
+    </tr>
+    </thead>
+  <tbody>
+    <% @filtered_links.each do |link| %>
+      <tr>
+        <td><%= link.id %></td>
+        <td><%= link.original_link %></td>
+        <td><%= link_to "#{link_url(link)}", "/l/#{link.slug}" %></td>
+        <td><%= link.category %></td>
+        <% if link.accesses.any? %>
+            <td><%= link.today_access %></td>
+            <td><%= link.total_access %></td>
+        <% else %>
+            <td><%= 0 %></td>
+            <td><%= 0 %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+
+<button onclick="goBack()">Back to Links</button>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+
+
