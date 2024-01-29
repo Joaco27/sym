@@ -6,6 +6,10 @@ class LinksController < ApplicationController
   # GET /links or /links.json
   def index
     @links = Link.all
+    if user_signed_in?
+      @links = Link.where.not(user_id: current_user.id)
+    end
+    @links
   end
 
   def my_links
